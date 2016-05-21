@@ -1,7 +1,7 @@
 <ion-view view-title="{{vm.garden.name}}">
   <ion-content has-bouncing="false">
     <h2>{{vm.garden.name}}</h2>
-    <p>{{vm.garden.address}}</p>
+    <p><a ui-sref="app.map({garden: vm.garden})">{{vm.garden.address}}</a></p>
   </ion-content>
   <ion-content style="margin-top:100px">
     <ion-list>

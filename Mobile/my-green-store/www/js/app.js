@@ -57,6 +57,18 @@
             controller: 'CheckoutController as vm'
           }
         }
+      })
+      .state('app.map', {
+        url: '/map',
+        params: {
+          garden: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/map.html',
+            controller: 'MapController as vm'
+          }
+        }
       });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/gardenlist');
