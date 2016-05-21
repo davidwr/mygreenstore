@@ -4,7 +4,7 @@
     var vm = this;
 
     vm.init = function () {
-      GardenService.getGarden(0).then(function(garden) {
+      GardenService.getGarden(0).then(function (garden) {
         vm.garden = garden;
         return ProductService.getProducts(garden.id);
       }).then(function (products) {
@@ -16,5 +16,5 @@
   }
 
   angular.module('mgstore')
-    .controller('MyGardenController', ['$state', 'GardenService','ProductService', MyGardenController]);
+    .controller('MyGardenController', ['$state', 'GardenService', 'ProductService', MyGardenController]);
 } ());

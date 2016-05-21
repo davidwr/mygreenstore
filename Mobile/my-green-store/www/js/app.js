@@ -87,6 +87,18 @@
             controller: 'MyGardenController as vm'
           }
         }
+      })
+      .state('app.product', {
+        url: '/product',
+        params: {
+          product: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/product.html',
+            controller: 'ProductController as vm'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/app/gardenlist');
