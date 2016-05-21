@@ -1,18 +1,23 @@
 (function () {
   'use strict';
 
-  function AuthService($q) {
+  function AuthService($q, apiUrl, $http) {
 
     var service = {};
 
-    service.login = function () {
-      return {};
+    service.login = function (done) {
+      $http.get(apiUrl + '/login')
+        .then(function successCallback(response) {
+          console.log(response)
+        }, function errorCallback(response) {
+          console.log(response)
+        });
     };
 
     return service;
   }
 
   angular.module('mgstore')
-    .factory('AuthService', AuthService);
+    .factory('AuthService', ['$q', 'apiUrl', '$http', AuthService]);
 
 } ());
