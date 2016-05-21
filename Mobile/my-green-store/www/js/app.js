@@ -74,7 +74,7 @@
     $urlRouterProvider.otherwise('/app/gardenlist');
   }
 
-  angular.module('mgstore', ['ionic'])
+  angular.module('mgstore', ['ionic', 'restangular'])
     .config(['$stateProvider', '$urlRouterProvider', config])
     .run(['$ionicPlatform', run])
 
