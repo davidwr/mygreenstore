@@ -21,13 +21,13 @@
         <ion-item menu-close href="#/app/gardenlist" class="item-icon-left">
           <i class="icon ion-map"></i> Gardens nearby
         </ion-item>
-        <ion-item menu-close ng-click="login()" class="item-icon-left">
+        <ion-item menu-close ng-href="#/app/myorders" class="item-icon-left">
           <i class="icon ion-ios-cart"></i> My orders
         </ion-item>
-        <ion-item menu-close href="#/app/search" class="item-icon-left">
+        <ion-item menu-close href="#/app/mygarden" class="item-icon-left">
           <i class="icon ion-ios-rose"></i> My Garden
         </ion-item>
-        <ion-item menu-close href="#/app/playlists" class="item-icon-left">
+        <ion-item menu-close ng-click="vm.logout()" class="item-icon-left">
           <i class="icon ion-log-out"></i> Logout
         </ion-item>
       </ion-list>

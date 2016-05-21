@@ -1,0 +1,11 @@
+<ion-view view-title="Add product">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="garden in vm.gardens" class="item-avatar" ng-click="vm.details(garden)">
+        <img src="img/ionic.png" alt="photo"></img>
+        {{garden.name}}
+        <p>1.5Km distant</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

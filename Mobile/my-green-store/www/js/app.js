@@ -23,7 +23,7 @@
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+        controller: 'MainController'
       })
       .state('app.gardenlist', {
         url: '/gardenlist',
@@ -69,8 +69,26 @@
             controller: 'MapController as vm'
           }
         }
+      })
+      .state('app.myorders', {
+        url: '/myorders',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/myorders.html',
+            controller: 'MyOrdersController as vm'
+          }
+        }
+      })
+      .state('app.mygarden', {
+        url: '/mygarden',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mygarden.html',
+            controller: 'MyGardenController as vm'
+          }
+        }
       });
-    // if none of the above states are matched, use this as the fallback
+
     $urlRouterProvider.otherwise('/app/gardenlist');
   }
 
