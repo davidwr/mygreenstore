@@ -1,0 +1,9 @@
+<ion-view view-title="Gardens nearby">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="garden in vm.gardens" ng-click="vm.details(garden)">
+        {{garden.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

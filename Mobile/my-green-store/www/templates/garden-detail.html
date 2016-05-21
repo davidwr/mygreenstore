@@ -1,0 +1,21 @@
+<ion-view view-title="{{vm.garden.name}}">
+  <ion-content>
+    <h2>{{vm.garden.name}}</h2>
+    <p>{{vm.garden.address}}</p>
+    
+    <ion-list>
+      <ion-item ng-repeat="product in vm.products" class="item-avatar" ng-click="vm.showDetails(product)">
+        <img src="img/ionic.png" alt="photo"></img>
+        <div class="product-quantity">
+          <input type="number" placeholder="Qty." ng-model="product.qty" />
+        </div>
+        <h2>{{product.name}}</h2>
+        <p>In stock: {{product.stock}}</p>
+        
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-clear pull-right button-dark" ng-click="vm.buy()">Buy now!</button>
+  </div>
+</ion-view>

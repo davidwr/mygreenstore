@@ -1,0 +1,10 @@
+/* Empty. Add your own CSS if you like */
+.product-quantity {
+  float:right;
+  width: 50px;
+}
+.product-quantity input {
+  width: 50px;
+  border: 1px solid gray;
+  text-align: center;
+}
