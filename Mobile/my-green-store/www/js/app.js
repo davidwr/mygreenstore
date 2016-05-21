@@ -79,6 +79,18 @@
           }
         }
       })
+      .state('app.order-detail', {
+        url: '/myorders',
+        params: {
+          order: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/order-detail.html',
+            controller: 'OrderDetailController as vm'
+          }
+        }
+      })
       .state('app.mygarden', {
         url: '/mygarden',
         views: {

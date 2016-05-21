@@ -1,0 +1,32 @@
+<ion-view view-title="My orders">
+  <ion-content has-bouncing="false">
+    <ion-tabs class="tabs-balanced tabs-icon-top">
+      <ion-tab title="Sold" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+        <ion-content has-bouncing="true">
+          <ion-nav-view>
+            <ion-list>
+              <ion-item ng-repeat="item in vm.soldItems" class="item-icon-right" ng-click="vm.details(item)">
+                <h2>Order #{{item.number}}</h2>
+                <p>{{item.date | date : 'yyyy-MM-dd hh:mm a'}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+              </ion-item>
+            </ion-list>
+          </ion-nav-view>
+        </ion-content>
+      </ion-tab>
+      <ion-tab title="Bought" icon-on="ion-ios-cart" icon-off="ion-ios-cart-outline">
+        <ion-content has-bouncing="true">
+          <ion-nav-view>
+            <ion-list>
+              <ion-item ng-repeat="item in vm.boughtItems" class="item-icon-right" ng-click="vm.details(item)">
+                <h2>Order #{{item.number}}</h2>
+                <p>{{item.date | date : 'yyyy-MM-dd hh:mm a'}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+              </ion-item>
+            </ion-list>
+          </ion-nav-view>
+        </ion-content>
+      </ion-tab>
+    </ion-tabs>
+  </ion-content>
+</ion-view>
