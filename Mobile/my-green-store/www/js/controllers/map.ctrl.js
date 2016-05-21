@@ -1,45 +1,89 @@
 (function () {
   'use strict';
 
-  function MapController($scope, $stateParams, $ionicLoading, $compile) {
+  function MapController($stateParams, $ionicLoading, $compile, $ionicHistory, GardenService) {
     var vm = this;
 
     vm.initialize = function () {
-      var garden = $stateParams['garden']
-      var pos = garden.location;
-      var myLatlng = new google.maps.LatLng(pos.lat, pos.lng);
+
+      vm.showAddressBar = $stateParams['showAddressBar'];
+
+      if (vm.showAddressBar) {
+        vm.geocoder = new google.maps.Geocoder();
+      }
+
+      vm.garden = $stateParams['garden'];
+      var pos = vm.garden.location;
+      var center = new google.maps.LatLng(pos.lat, pos.lng);
 
       var mapOptions = {
-        center: myLatlng,
+        center: center,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       var map = new google.maps.Map(document.getElementById("map"),
         mapOptions);
 
-      var contentString = "<div>" + garden.name + "</div>";
-      var compiled = $compile(contentString)($scope);
+      var contentString = "<div>" + vm.garden.name + "</div>";
+      //var compiled = $compile(contentString)($scope);
 
       var infowindow = new google.maps.InfoWindow({
-        content: compiled[0]
+        content: contentString
       });
 
-      var marker = new google.maps.Marker({
-        position: myLatlng,
+      vm.marker = new google.maps.Marker({
+        position: center,
         map: map
       });
 
-      google.maps.event.addListener(marker, 'click', function () {
-        infowindow.open(map, marker);
+      google.maps.event.addListener(vm.marker, 'click', function () {
+        infowindow.open(map, vm.marker);
       });
 
-      $scope.map = map;
+      google.maps.event.addListener(map, 'center_changed', vm.centerMarker);
+
+      vm.map = map;
+    }
+
+    vm.centerMarker = function () {
+      window.setTimeout(function () {
+        var center = vm.map.getCenter();
+        vm.marker.setPosition(center);
+      }, 100);
+    };
+
+    vm.search = function () {
+      vm.geocoder.geocode({ address: vm.garden.address }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          vm.map.setCenter(results[0].geometry.location);
+          vm.centerMarker();
+        } else {
+          alert('Address not found.');
+        }
+      })
+    }
+
+    vm.save = function () {
+      var center = vm.map.getCenter();
+      vm.garden.location = {
+        lat: center.lat(),
+        lng: center.lng()
+      }
+      GardenService.save(vm.garden).then(function () {
+        $ionicHistory.goBack();
+      });
     }
 
     vm.initialize();
   }
 
   angular.module('mgstore')
-    .controller('MapController', ['$scope', '$stateParams', '$ionicLoading', '$compile', MapController]);
+    .controller('MapController', [
+      '$stateParams',
+      '$ionicLoading',
+      '$compile',
+      '$ionicHistory',
+      'GardenService',
+      MapController]);
 
 } ());

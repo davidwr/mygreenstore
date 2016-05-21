@@ -99,6 +99,31 @@
             controller: 'ProductController as vm'
           }
         }
+      })
+      .state('app.mygarden-edit', {
+        url: '/mygarden-edit',
+        params: {
+          garden: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mygarden-edit.html',
+            controller: 'MyGardenEditController as vm'
+          }
+        }
+      })
+      .state('app.mapaddress', {
+        url: '/mapaddress',
+        params: {
+          garden: null,
+          showAddressBar: true
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mapaddress.html',
+            controller: 'MapController as vm'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/app/gardenlist');

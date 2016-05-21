@@ -12,6 +12,14 @@
       });
     };
 
+    vm.edit = function (garden) {
+      $state.go('app.mygarden-edit', { garden: garden });
+    };
+
+    vm.editProduct = function (product) {
+      $state.go('app.product', { product: product });
+    };
+
     vm.init();
   }
 

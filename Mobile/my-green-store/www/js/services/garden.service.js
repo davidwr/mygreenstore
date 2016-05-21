@@ -32,6 +32,13 @@
       });
     };
 
+    service.save = function (garden) {
+      return $q(function (resolve) {
+        fakeList[0] = garden;
+        resolve();
+      });
+    };
+
     return service;
   }
 

@@ -1,0 +1,21 @@
+<ion-view view-title="My Garden">
+  <ion-content>
+    <ion-list>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="Name" ng-model="vm.garden.name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Phone #</span>
+        <input type="text" placeholder="Phone #" ng-model="vm.garden.phone">
+      </label>
+      <ion-item>
+        <h2>{{vm.garden.address}}</h2>
+        <p><a ng-click="vm.changeAddress()">Change Address</a></p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-full no-margin button-balanced" ng-click="vm.save()">Save</button>
+  </div>
+</ion-view>
