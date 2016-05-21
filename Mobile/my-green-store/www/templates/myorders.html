@@ -5,8 +5,9 @@
         <ion-content has-bouncing="true">
           <ion-nav-view>
             <ion-list>
-              <ion-item ng-repeat="item in vm.soldItems" class="item-icon-right" ng-click="vm.details(item)">
+              <ion-item ng-repeat="item in vm.soldItems" class="item-icon-right" ng-click="vm.details(item, true)">
                 <h2>Order #{{item.number}}</h2>
+                <span class="pill text-right button button-small" ng-class="item.statusClass">{{item.statusLabel}}</span>
                 <p>{{item.date | date : 'yyyy-MM-dd hh:mm a'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
               </ion-item>
@@ -18,8 +19,9 @@
         <ion-content has-bouncing="true">
           <ion-nav-view>
             <ion-list>
-              <ion-item ng-repeat="item in vm.boughtItems" class="item-icon-right" ng-click="vm.details(item)">
+              <ion-item ng-repeat="item in vm.boughtItems" class="item-icon-right" ng-click="vm.details(item, false)">
                 <h2>Order #{{item.number}}</h2>
+                <span class="pill text-right button button-small" ng-class="item.statusClass">{{item.statusLabel}}</span>
                 <p>{{item.date | date : 'yyyy-MM-dd hh:mm a'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
               </ion-item>

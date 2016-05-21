@@ -4,10 +4,10 @@
   function OrderService($q) {
 
     var statusMap = {
-      penging: 'Pending',
+      pending: 'Pending',
       canceled: 'Cancelled',
       finished: 'Completed'
-    }
+    };
 
     var service = {};
 
@@ -17,31 +17,45 @@
         number: 1,
         date: new Date().toISOString(),
         status: 'pending',
-        products: [
-          {
+        items: [{
+          price: 12.9,
+          quantity: 10,
+          product: {
             id: 0,
             name: 'Carrots',
             stock: 150
-          }, {
-            id: 1,
-            name: 'Apples',
-            stock: 50
+          }
+        }, {
+            price: 12.9,
+            quantity: 10,
+            product: {
+              id: 1,
+              name: 'Apples',
+              stock: 50
+            }
           }
         ]
       }, {
         id: 1,
         number: 2,
         date: new Date().toISOString(),
-        status: 'cancelled',
-        products: [
-          {
+        status: 'canceled',
+        items: [{
+          price: 12.9,
+          quantity: 10,
+          product: {
             id: 0,
             name: 'Carrots',
             stock: 150
-          }, {
-            id: 1,
-            name: 'Apples',
-            stock: 50
+          }
+        }, {
+            price: 12.9,
+            quantity: 10,
+            product: {
+              id: 1,
+              name: 'Apples',
+              stock: 50
+            }
           }
         ]
       }, {
@@ -49,15 +63,22 @@
         number: 3,
         date: new Date().toISOString(),
         status: 'finished',
-        products: [
-          {
+        items: [{
+          price: 12.9,
+          quantity: 10,
+          product: {
             id: 0,
             name: 'Carrots',
             stock: 150
-          }, {
-            id: 1,
-            name: 'Apples',
-            stock: 50
+          }
+        }, {
+            price: 12.9,
+            quantity: 10,
+            product: {
+              id: 1,
+              name: 'Apples',
+              stock: 50
+            }
           }
         ]
       }
@@ -69,31 +90,45 @@
         number: 12,
         date: new Date().toISOString(),
         status: 'pending',
-        products: [
-          {
+        items: [{
+          price: 12.9,
+          quantity: 10,
+          product: {
             id: 0,
             name: 'Carrots',
             stock: 150
-          }, {
-            id: 1,
-            name: 'Apples',
-            stock: 50
+          }
+        }, {
+            price: 12.9,
+            quantity: 10,
+            product: {
+              id: 1,
+              name: 'Apples',
+              stock: 50
+            }
           }
         ]
       }, {
         id: 1,
         number: 23,
         date: new Date().toISOString(),
-        status: 'cancelled',
-        products: [
-          {
+        status: 'canceled',
+        items: [{
+          price: 12.9,
+          quantity: 10,
+          product: {
             id: 0,
             name: 'Carrots',
             stock: 150
-          }, {
-            id: 1,
-            name: 'Apples',
-            stock: 50
+          }
+        }, {
+            price: 12.9,
+            quantity: 10,
+            product: {
+              id: 1,
+              name: 'Apples',
+              stock: 50
+            }
           }
         ]
       }, {
@@ -101,27 +136,42 @@
         number: 31,
         date: new Date().toISOString(),
         status: 'finished',
-        products: [
-          {
+        items: [{
+          price: 12.9,
+          quantity: 10,
+          product: {
             id: 0,
             name: 'Carrots',
             stock: 150
-          }, {
-            id: 1,
-            name: 'Apples',
-            stock: 50
+          }
+        }, {
+            price: 12.9,
+            quantity: 10,
+            product: {
+              id: 1,
+              name: 'Apples',
+              stock: 50
+            }
           }
         ]
       }
     ];
 
+    service.mapLabels = function (list) {
+      list.forEach(function (order) {
+        order.statusLabel = statusMap[order.status];
+      });
+    }
+
     service.getSold = function () {
+      service.mapLabels(fakeListSold);
       return $q(function (resolve) {
         resolve(fakeListSold);
       });
     };
 
     service.getBought = function () {
+      service.mapLabels(fakeListBought);
       return $q(function (resolve) {
         resolve(fakeListBought);
       });

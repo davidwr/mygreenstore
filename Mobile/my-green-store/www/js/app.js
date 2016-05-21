@@ -80,9 +80,10 @@
         }
       })
       .state('app.order-detail', {
-        url: '/myorders',
+        url: '/order-detail',
         params: {
-          order: null
+          order: null,
+          seller: false
         },
         views: {
           'menuContent': {

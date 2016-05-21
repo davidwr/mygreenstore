@@ -9832,3 +9832,10 @@ a.button {
 
 .no-margin {
   margin: 0 !important; }
+
+.pill {
+  float: right;
+  height: 100%;
+  top: 25%;
+  min-height: 15px;
+  line-height: 15px; }
