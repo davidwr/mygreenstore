@@ -1,47 +1,58 @@
 (function () {
   'use strict';
 
-  function MainController($scope, $ionicModal, $timeout) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
+  function MainController(apiUrl, $scope, $ionicModal, $timeout, $cordovaOauth, $http, LocalStorageService) {
+    $scope.user = LocalStorageService.get('user');
+    $scope.loginMessage = '';
 
-    // Form data for the login modal
-    $scope.loginData = {};
-
-    // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
       scope: $scope
     }).then(function (modal) {
       $scope.modal = modal;
     });
 
-    // Triggered in the login modal to close it
     $scope.closeLogin = function () {
       $scope.modal.hide();
     };
 
-    // Open the login modal
     $scope.login = function () {
       $scope.modal.show();
     };
 
-    // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-      console.log('Doing login', $scope.loginData);
+      function onError(where, error) {
+        console.log(where);
+        console.log(error);
+        $scope.loginMessage = 'Login error, please try again.'
+      };
 
-      // Simulate a login delay. Remove this and replace with your login
-      // code if using a login system
-      $timeout(function () {
-        $scope.closeLogin();
-      }, 1000);
+      function googleOAuth(callback) {
+        var clientId = "781562583420-jp5dnffk58hu8qa37jjb59mvnauaks2r.apps.googleusercontent.com";
+        $cordovaOauth.google(clientId, ["email"])
+          .then(callback, function(error) { return onError('googleOAuth', error); });
+      }
+
+      function login(token, callback) {
+        $http.get(apiUrl + '/login', { headers: { token: token }})
+          .then(callback, function(error) { return onError('login: ', error); });
+      }
+
+      googleOAuth(function(result) {
+        login(result.access_token, function(response) {
+          if(!response.data.success)
+            return onError('final: ', response);
+
+          $scope.loginMessage = '';
+          LocalStorageService.set('user', response.data.user);
+          $scope.user = LocalStorageService.get('user');
+          $scope.closeLogin();
+        });
+      });
     };
   }
 
   angular.module('mgstore')
-    .controller('MainController', ['$scope', '$ionicModal', '$timeout', MainController]);
+    .controller('MainController', ['apiUrl', '$scope', '$ionicModal', '$timeout',
+      '$cordovaOauth', '$http', 'LocalStorageService', MainController]);
 
 } ());

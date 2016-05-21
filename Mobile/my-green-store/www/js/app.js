@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function run($ionicPlatform) {
+  function run($ionicPlatform, $scope) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -141,8 +141,9 @@
     $urlRouterProvider.otherwise('/app/gardenlist');
   }
 
-  angular.module('mgstore', ['ionic'])
+  angular.module('mgstore', ['ionic', 'restangular', 'ngCordovaOauth'])
     .config(['$stateProvider', '$urlRouterProvider', config])
     .run(['$ionicPlatform', run])
+    .constant('apiUrl', 'http://mygreenstore-allclothes.rhcloud.com/');
 
 }());
