@@ -23,7 +23,7 @@
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+        controller: 'MainController'
       })
       .state('app.gardenlist', {
         url: '/gardenlist',
@@ -69,8 +69,63 @@
             controller: 'MapController as vm'
           }
         }
+      })
+      .state('app.myorders', {
+        url: '/myorders',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/myorders.html',
+            controller: 'MyOrdersController as vm'
+          }
+        }
+      })
+      .state('app.mygarden', {
+        url: '/mygarden',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mygarden.html',
+            controller: 'MyGardenController as vm'
+          }
+        }
+      })
+      .state('app.product', {
+        url: '/product',
+        params: {
+          product: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/product.html',
+            controller: 'ProductController as vm'
+          }
+        }
+      })
+      .state('app.mygarden-edit', {
+        url: '/mygarden-edit',
+        params: {
+          garden: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mygarden-edit.html',
+            controller: 'MyGardenEditController as vm'
+          }
+        }
+      })
+      .state('app.mapaddress', {
+        url: '/mapaddress',
+        params: {
+          garden: null,
+          showAddressBar: true
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mapaddress.html',
+            controller: 'MapController as vm'
+          }
+        }
       });
-    // if none of the above states are matched, use this as the fallback
+
     $urlRouterProvider.otherwise('/app/gardenlist');
   }
 

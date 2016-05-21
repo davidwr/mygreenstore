@@ -1,0 +1,26 @@
+<ion-view view-title="My Garden">
+  <ion-content has-bouncing="false">
+    <ion-item class="item-thumbnail-left" ng-click="vm.edit(vm.garden)">
+      <img src="img/ionic.png" alt="photo"></img>
+      <h2>{{vm.garden.name}}</h2>
+      <p>{{vm.garden.address}}</p>
+      <p>{{vm.garden.phone}}</p>
+    </ion-item>
+  </ion-content>
+
+
+  <ion-content style="margin-top:97px">
+    <ion-list>
+      <ion-item class="item-divider ">
+        <button style="float:right;line-height:15px;min-height:20px" class="button button-dark button-small" ui-sref="app.product">
+          Add product
+        </button> My Products
+      </ion-item>
+      <ion-item ng-repeat="product in vm.products" class="item-avatar" ng-click="vm.editProduct(product)">
+        <img src="img/ionic.png" alt="photo"></img>
+        <h2>{{product.name}}</h2>
+        <p>In stock: {{product.stock}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-view view-title="Add product">
+  <ion-content>
+    <ion-list>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Product name</span>
+        <input type="text" placeholder="Product name" ng-model="vm.product.name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Quantity</span>
+        <input type="number" placeholder="Quantity" ng-model="vm.product.stock">
+      </label>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-full no-margin button-balanced" ng-click="vm.save()">Save</button>
+  </div>
+</ion-view>
