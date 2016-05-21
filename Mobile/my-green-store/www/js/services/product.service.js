@@ -31,7 +31,13 @@
 
         resolve(product);
       });
-    }
+    };
+    
+    service.remove = function(product) {
+      return $q(function(resolve) {
+        resolve();
+      });
+    };
 
     return service;
   }
