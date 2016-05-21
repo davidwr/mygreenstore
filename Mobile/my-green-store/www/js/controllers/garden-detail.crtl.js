@@ -1,16 +1,14 @@
 (function () {
   'use strict';
 
-  function GardenDetailController($stateParams, $state, $ionicModal, GardenService, ProductService) {
+  function GardenDetailController($stateParams, $state, $scope, $ionicModal, GardenService, ProductService, CheckoutService) {
     var vm = this;
 
-    vm.selectedProduct = {};
-
-    $ionicModal.fromTemplateUrl('modal/product-detail.html', {
-      scope: vm.selectedProduct,
+    $ionicModal.fromTemplateUrl('templates/modal/product-detail.html', {
+      scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {
-      vm.modal = modal;
+      $scope.modal = modal;
     });
 
     vm.init = function () {
@@ -30,18 +28,47 @@
     };
 
     vm.showDetails = function (product) {
-      vm.selectedProduct = product;
-      vm.modal.show();
+      $scope.product = product;
+      $scope.modal.show();
+    }
+
+    vm.add = function () {
+      if ($scope.product.qty > $scope.product.stock) {
+        alert("Can't add more than " + $scope.product.stock + ".");
+      } else {
+        $scope.modal.hide();
+      }
     }
 
     vm.buy = function () {
-      $state.go('app.checkout', { id: vm.garden.id });
+      var selectedProducts = [];
+      
+      vm.products.forEach(function(prod) {
+        if (prod.qty && prod.qty > 0) {
+          selectedProducts.push(prod);
+        }
+      });
+      
+      if (selectedProducts.length) {
+        CheckoutService.setProducts(selectedProducts);
+        $state.go('app.checkout', { garden: vm.garden });
+      } else {
+        alert("You haven't selected any product!");
+      }
     }
 
     vm.init();
   }
 
   angular.module('mgstore')
-    .controller('GardenDetailController', ['$stateParams', '$state', '$ionicModal', 'GardenService', 'ProductService', GardenDetailController]);
+    .controller('GardenDetailController', [
+      '$stateParams',
+      '$state',
+      '$scope',
+      '$ionicModal',
+      'GardenService',
+      'ProductService',
+      'CheckoutService',
+      GardenDetailController]);
 
 } ());

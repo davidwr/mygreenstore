@@ -1,4 +1,9 @@
 {
   "name": "my-green-store",
-  "app_id": ""
+  "app_id": "",
+   "gulpStartupTasks": [
+     "inject:dev",
+     "watch",
+     "sass"
+ ]
 }

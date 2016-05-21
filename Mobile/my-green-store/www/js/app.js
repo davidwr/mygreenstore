@@ -25,22 +25,6 @@
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
       })
-      .state('app.search', {
-        url: '/search',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/search.html'
-          }
-        }
-      })
-      .state('app.browse', {
-        url: '/browse',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/browse.html'
-          }
-        }
-      })
       .state('app.gardenlist', {
         url: '/gardenlist',
         views: {
@@ -59,6 +43,18 @@
           'menuContent': {
             templateUrl: 'templates/garden-detail.html',
             controller: 'GardenDetailController as vm'
+          }
+        }
+      })
+      .state('app.checkout', {
+        url: '/checkout',
+        params: {
+          garden: null
+        },
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/checkout.html',
+            controller: 'CheckoutController as vm'
           }
         }
       });

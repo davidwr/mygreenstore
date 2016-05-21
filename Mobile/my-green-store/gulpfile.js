@@ -6,14 +6,29 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var inject = require('gulp-inject');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  main: ['./www/js/app.js'],
+  src: ['./www/js/!(app)**/*.js']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'inject:dev']);
 
-gulp.task('sass', function(done) {
+gulp.task('inject:dev', function () {
+  var target = gulp.src('./www/index.html');
+  var sources = gulp.src([paths.main, paths.src], {
+    read: false
+  });
+  return target.pipe(inject(sources, {
+    addRootSlash: false,
+    ignorePath: 'front-end'
+  }))
+    .pipe(gulp.dest('front-end'));
+});
+
+gulp.task('sass', function (done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .on('error', sass.logError)
@@ -26,18 +41,19 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.src, ['inject:dev']);
 });
 
-gulp.task('install', ['git-check'], function() {
+gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
-    .on('log', function(data) {
+    .on('log', function (data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
 
-gulp.task('git-check', function(done) {
+gulp.task('git-check', function (done) {
   if (!sh.which('git')) {
     console.log(
       '  ' + gutil.colors.red('Git is not installed.'),

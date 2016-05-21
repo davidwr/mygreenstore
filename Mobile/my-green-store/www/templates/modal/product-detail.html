@@ -1,8 +1,19 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">My Modal title</h1>
+    <h1 class="title">Detail</h1>
   </ion-header-bar>
   <ion-content>
-    Hello!
+    <form ng-submit="vm.add()">
+      <img src="img/ionic.png" alt="photo" />
+      <h2>{{product.name}}</h2>
+      <p>Stock: {{product.stock}}</p>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">How many do you need?</span>
+        <input id="mdlProdQty" type="number" placeholder="Qty." ng-model="product.qty">
+      </label>
+    </form>
   </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-clear pull-right button-dark" ng-click="vm.add()">Add</button>
+  </div>
 </ion-modal-view>

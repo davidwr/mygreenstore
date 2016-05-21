@@ -1,0 +1,41 @@
+<ion-view view-title="Checkout">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-divider">
+        Your basket
+      </ion-item>
+      <ion-item ng-repeat="product in vm.products" class="item-avatar" ng-click="vm.showDetails(product)">
+        <img src="img/ionic.png" alt="photo"></img>
+        <div class="product-quantity" ng-if="product.qty">
+          <p>Qty.: {{product.qty}}</p>
+        </div>
+        <h2>{{product.name}}</h2>
+        <p>In stock: {{product.stock}}</p>
+      </ion-item>
+      <ion-item class="item item-divider">
+        Shipment
+      </ion-item>
+
+      <ion-item class="item-toggle">
+        Ship to my address
+        <label class="toggle toggle-balanced">
+          <input type="checkbox" ng-model="vm.ship">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+      <ion-item ng-hide="vm.ship">
+        <p>Pickup location:<br /> {{vm.garden.address}}</p>
+      </ion-item>
+      <ion-item ng-show="vm.ship">
+        <label class="item item-input">
+          <textarea placeholder="Put your address here!"></textarea>
+        </label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-clear pull-right button-dark" ng-click="vm.confirm()">Confirm</button>
+  </div>
+</ion-view>
