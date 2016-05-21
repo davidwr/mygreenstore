@@ -1,9 +1,13 @@
 <ion-view view-title="{{vm.garden.name}}">
   <ion-content has-bouncing="false">
-    <h2>{{vm.garden.name}}</h2>
-    <p><a ui-sref="app.map({garden: vm.garden})">{{vm.garden.address}}</a></p>
+    <ion-item class="item-thumbnail-left">
+      <img src="img/ionic.png" alt="photo"></img>
+      <h2>{{vm.garden.name}}</h2>
+      <p><a ui-sref="app.map({garden: vm.garden})">{{vm.garden.address}}</a></p>
+      <p>{{vm.garden.phone}}</p>
+    </ion-item>
   </ion-content>
-  <ion-content style="margin-top:100px">
+  <ion-content style="margin-top:97px">
     <ion-list>
       <ion-item class="item item-divider">
         Our products

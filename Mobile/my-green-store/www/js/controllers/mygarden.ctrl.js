@@ -20,6 +20,17 @@
       $state.go('app.product', { product: product });
     };
 
+    vm.remove = function (product, $event) {
+      $event.stopPropagation();
+      if (confirm('Do you really want to remove ' + product.name + '?')) {
+        ProductService.remove(product).then(function () {
+          return ProductService.getProducts(vm.garden.id);
+        }).then(function (products) {
+          vm.products = products;
+        });
+      }
+    };
+
     vm.init();
   }
 
