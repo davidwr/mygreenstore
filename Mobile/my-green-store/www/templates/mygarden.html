@@ -1,7 +1,7 @@
 <ion-view view-title="My Garden">
   <ion-content has-bouncing="false">
     <ion-item class="item-thumbnail-left item-icon-right" ng-click="vm.edit(vm.garden)">
-      <img src="img/ionic.png" alt="photo"></img>
+      <img src="{{vm.garden.photo}}" alt="photo" ng-show="vm.garden.photo"></img>
       <h2>{{vm.garden.name}}</h2>
       <p>{{vm.garden.address}}</p>
       <p>{{vm.garden.phone}}</p>
@@ -18,8 +18,7 @@
         </button> My Products
       </ion-item>
       <ion-item ng-repeat="product in vm.products" class="item-avatar item-button-right" ng-click="vm.editProduct(product)">
-        <img src="img/ionic.png" alt="photo"></img>
-
+        <img src="{{product.photo}}" alt="photo"></img>
         <h2>{{product.name}}</h2>
         <p>In stock: {{product.stock}}</p>
         <button style="height:100%;top:25%" class="button button-assertive button-clear" ng-click="vm.remove(product, $event)"><i class="icon ion-minus-circled "></i></button>

@@ -12,17 +12,17 @@
   		}
   	}
 
-  	service.set = function(chave, valor) {
-  		$window.localStorage[chave] = typeof valor === 'object' ? JSON.stringify(valor) : valor;
+  	service.set = function(key, value) {
+  		$window.localStorage[key] = typeof value === 'object' ? JSON.stringify(value) : value;
   	};
 
-    service.get = function(chave) {
-      var valor = $window.localStorage[chave];
-      return tryParse(valor) || valor;
+    service.get = function(key) {
+      var value = $window.localStorage[key];
+      return tryParse(value) || value;
     };
 
-  	service.remove = function(chave){
-  		delete $window.localStorage[chave];
+  	service.remove = function(key){
+  		delete $window.localStorage[key];
   	};
 
   	service.isLoggedIn = function() {

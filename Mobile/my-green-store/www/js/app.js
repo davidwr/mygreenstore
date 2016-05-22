@@ -10,10 +10,10 @@
         cordova.plugins.Keyboard.disableScroll(true);
 
       }
-      if (window.StatusBar) {
-        // org.apache.cordova.statusbar required
-        StatusBar.styleDefault();
-      }
+      // if (window.StatusBar) {
+      //   // org.apache.cordova.statusbar required
+      //   StatusBar.styleDefault();
+      // }
     });
   }
 
@@ -135,6 +135,15 @@
           'menuContent': {
             templateUrl: 'templates/mapaddress.html',
             controller: 'MapController as vm'
+          }
+        }
+      })
+      .state('app.profile', {
+        url: '/profile',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/profile.html',
+            controller: 'ProfileController as vm'
           }
         }
       });

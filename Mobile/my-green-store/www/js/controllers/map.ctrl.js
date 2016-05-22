@@ -8,10 +8,6 @@
 
       vm.showAddressBar = $stateParams['showAddressBar'];
 
-      if (vm.showAddressBar) {
-        vm.geocoder = new google.maps.Geocoder();
-      }
-
       vm.garden = $stateParams['garden'];
       var pos = vm.garden.location;
       var center = new google.maps.LatLng(pos.lat, pos.lng);
@@ -40,7 +36,10 @@
         infowindow.open(map, vm.marker);
       });
 
-      google.maps.event.addListener(map, 'center_changed', vm.centerMarker);
+      if (vm.showAddressBar) {
+        vm.geocoder = new google.maps.Geocoder();
+        google.maps.event.addListener(map, 'center_changed', vm.centerMarker);
+      }
 
       vm.map = map;
     }

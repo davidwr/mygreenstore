@@ -8,7 +8,6 @@
       vm.seller = $stateParams['seller'];
       vm.total = 0;
       vm.order.items.forEach(function (item) {
-        console.log(item);
         vm.total += item.price * item.quantity;
       });
     };

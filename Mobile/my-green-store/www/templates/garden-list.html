@@ -3,9 +3,9 @@
     <button type="button" name="button" ng-click="login()">Login</button>
     <ion-list>
       <ion-item ng-repeat="garden in vm.gardens" class="item-avatar" ng-click="vm.details(garden)">
-        <img src="img/ionic.png" alt="photo"></img>
+        <img src="{{garden.photo}}" ng-show="garden.photo" alt="photo"></img>
         {{garden.name}}
-        <p>1.5Km distant</p>
+        <p ng-show="garden.distance">{{garden.distance | number:2}}Km distant</p>
       </ion-item>
     </ion-list>
   </ion-content>
