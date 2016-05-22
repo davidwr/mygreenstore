@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  function MyOrdersController($state, OrderService) {
+  function MyOrdersController($scope, $state, OrderService, LocalStorageService) {
     var vm = this;
 
     vm.populateClass = function(list) {
@@ -14,23 +14,27 @@
     };
 
     vm.init = function () {
-      OrderService.getSold().then(function (soldItems) {
-        vm.soldItems = soldItems;
-        vm.populateClass(vm.soldItems);
-      });
-      OrderService.getBought().then(function (boughtItems) {
-        vm.boughtItems = boughtItems;
-        vm.populateClass(vm.boughtItems);
+      $scope.login(function () {
+        OrderService.getMyOrders().then(function(orders) {
+          var user = LocalStorageService.get('user');
+          OrderService.mapLabels(orders);
+
+          vm.soldItems = _.filter(orders, function(order) { return order.seller == user.id; });
+          vm.populateClass(vm.soldItems);
+
+          vm.boughtItems = _.filter(orders, function(order) { return order.customer == user.id; });
+          vm.populateClass(vm.boughtItems);
+        });
       });
     };
 
-    vm.details = function (order, seller) {
-      $state.go('app.order-detail', { order: order, seller: seller });
+    vm.details = function (order) {
+      $state.go('app.order-detail', { order: order });
     }
 
     vm.init();
   }
 
   angular.module('mgstore')
-    .controller('MyOrdersController', ['$state', 'OrderService', MyOrdersController]);
+    .controller('MyOrdersController', ['$scope', '$state', 'OrderService', 'LocalStorageService', MyOrdersController]);
 } ());

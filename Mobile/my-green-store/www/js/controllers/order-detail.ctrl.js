@@ -1,11 +1,14 @@
 (function () {
   'use strict';
-  function OrderDetailController($state, $stateParams, $ionicHistory, OrderService) {
+  function OrderDetailController($state, $stateParams, $ionicHistory, OrderService, LocalStorageService) {
     var vm = this;
 
     vm.init = function () {
+      var user = LocalStorageService.get('user');
+
       vm.order = $stateParams['order'];
-      vm.seller = $stateParams['seller'];
+      vm.isSeller = vm.order.seller == user.id;
+
       vm.total = 0;
       vm.order.items.forEach(function (item) {
         vm.total += item.price * item.quantity;
@@ -33,5 +36,6 @@
       '$stateParams',
       '$ionicHistory',
       'OrderService',
+      'LocalStorageService',
       OrderDetailController]);
 } ());

@@ -10,11 +10,11 @@
     $ionicModal.fromTemplateUrl('templates/login.html', {
       scope: $scope
     }).then(function (modal) {
-      $scope.modal = modal;
+      $scope.loginModal = modal;
     });
 
     main.closeLogin = function () {
-      $scope.modal.hide();
+      $scope.loginModal.hide();
     };
 
     $scope.login = function (cb) {
@@ -22,7 +22,7 @@
         cb();
       } else {
         main.loginCb = cb;
-        $scope.modal.show();
+        $scope.loginModal.show();
       }
     };
 
