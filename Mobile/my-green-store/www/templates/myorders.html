@@ -6,11 +6,13 @@
           <ion-nav-view>
             <ion-list>
               <ion-item ng-repeat="item in vm.soldItems" class="item-icon-right" ng-click="vm.details(item, true)">
-                <h2>Order #{{item.number}}</h2>
+                <h2>Order #{{item.id}}</h2>
                 <span class="pill text-right button button-small" ng-class="item.statusClass">{{item.statusLabel}}</span>
-                <p>{{item.date | date : 'yyyy-MM-dd hh:mm a'}}</p>
+                <p>{{item.createdAt | date : 'yyyy-MM-dd hh:mm a'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
               </ion-item>
+
+              <p class="padding" ng-show="vm.soldItems.length == 0">You don't have sold orders.</p>
             </ion-list>
           </ion-nav-view>
         </ion-content>
@@ -20,11 +22,13 @@
           <ion-nav-view>
             <ion-list>
               <ion-item ng-repeat="item in vm.boughtItems" class="item-icon-right" ng-click="vm.details(item, false)">
-                <h2>Order #{{item.number}}</h2>
+                <h2>Order #{{item.id}}</h2>
                 <span class="pill text-right button button-small" ng-class="item.statusClass">{{item.statusLabel}}</span>
-                <p>{{item.date | date : 'yyyy-MM-dd hh:mm a'}}</p>
+                <p>{{item.createdAt | date : 'yyyy-MM-dd hh:mm a'}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
               </ion-item>
+
+              <p class="padding" ng-show="vm.boughtItems.length == 0">You don't have bought orders.</p>
             </ion-list>
           </ion-nav-view>
         </ion-content>

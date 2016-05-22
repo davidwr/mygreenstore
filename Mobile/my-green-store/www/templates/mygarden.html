@@ -18,7 +18,7 @@
         </button> My Products
       </ion-item>
       <ion-item ng-repeat="product in vm.products" class="item-avatar item-button-right" ng-click="vm.editProduct(product)">
-        <img src="{{product.photo}}" alt="photo"></img>
+        <img ng-src="{{product.photo}}" alt="photo"></img>
         <h2>{{product.description}}</h2>
         <p>In stock: {{product.stock}}</p>
         <p>{{product.price | currency}}</p>

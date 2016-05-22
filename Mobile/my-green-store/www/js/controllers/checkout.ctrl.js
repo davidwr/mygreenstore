@@ -7,7 +7,7 @@
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {
-      $scope.modal = modal;
+      $scope.checkoutModal = modal;
     });
 
     vm.init = function () {
@@ -41,7 +41,7 @@
       CheckoutService.confirm(order).then(function (orderCreated) {
         orderCreated.garden = vm.garden;
         $scope.lastOrder = orderCreated;
-        $scope.modal.show();
+        $scope.checkoutModal.show();
       });
     };
 
@@ -50,7 +50,7 @@
         disableBack: true
       });
       $state.go('app.gardenlist');
-      $scope.modal.hide();
+      $scope.checkoutModal.hide();
     }
 
     vm.init();

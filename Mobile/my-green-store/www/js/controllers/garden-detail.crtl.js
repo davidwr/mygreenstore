@@ -8,7 +8,7 @@
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {
-      $scope.modal = modal;
+      $scope.productDetailModal = modal;
     });
 
     vm.init = function () {
@@ -28,14 +28,14 @@
 
     vm.showDetails = function (product) {
       $scope.product = product;
-      $scope.modal.show();
+      $scope.productDetailModal.show();
     }
 
     vm.add = function () {
       if ($scope.product.qty > $scope.product.stock) {
         alert("Can't add more than " + $scope.product.stock + ".");
       } else {
-        $scope.modal.hide();
+        $scope.productDetailModal.hide();
       }
     }
 

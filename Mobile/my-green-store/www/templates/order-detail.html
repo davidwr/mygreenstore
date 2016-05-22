@@ -1,17 +1,34 @@
-<ion-view view-title="Order #{{vm.order.number}}">
+<ion-view view-title="Order #{{vm.order.id}}">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="item in vm.order.items">
-        <h2>{{item.product.name}}</h2>
+      <ion-item class="item item-divider">
+        Items
+      </ion-item>
+
+      <ion-item class="item-avatar" ng-repeat="item in vm.order.items">
+        <img src="{{item.product.photo ? item.product.photo : 'http://dummyimage.com/40x40/ffffff/000000.jpg&text=no+photo'}}" alt="photo"></img>
+        <h2>{{item.product.description}}</h2>
         <p style="float:right" class="text-right">Item total: {{item.price * item.quantity | currency}}</p>
         <p>{{item.price | currency}} x {{item.quantity}}</p>
       </ion-item>
       <ion-item class="item-divider text-right">
         <h2>Total: {{vm.total | currency}}</h2>
       </ion-item>
+
+      <ion-item class="item item-divider">
+        Shipment
+      </ion-item>
+
+      <ion-item ng-hide="vm.order.isDelivery()">
+        <p>Pickup location:<br /> {{vm.order.garden.name}}<br />{{vm.order.garden.address}}</p>
+      </ion-item>
+
+      <ion-item ng-show="vm.order.isDelivery()">
+        <p>Delivery location:<br /> {{vm.order.ship_address}}</p>
+      </ion-item>
     </ion-list>
   </ion-content>
-  <div class="bar bar-footer" ng-if="vm.order.status === 'pending' && vm.seller">
+  <div class="bar bar-footer" ng-if="vm.order.status == 'pending' && vm.isSeller()">
     <button class="button button-assertive no-margin" ng-click="vm.cancel()">Cancel</button>
     <button class="button button-balanced no-margin" ng-click="vm.complete()">Completed</button>
   </div>
