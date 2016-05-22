@@ -53,3 +53,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   min-height:15px;
   line-height:15px;
 }
+
+#floater {
+    float: left;
+    height: 50%;
+    width: 100%;
+    margin-bottom: -50px;
+}
+
+.center-login {
+  text-align: center;
+  height: 70px;
+}
+
+.center-login button {
+  clear: both;
+  height: 70px;
+}

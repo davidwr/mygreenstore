@@ -8,7 +8,8 @@
       {
         id: 0,
         name: 'Carrots',
-        stock: 150
+        stock: 150,
+        photo: ''
       }, {
         id: 1,
         name: 'Apples',
