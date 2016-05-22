@@ -1,13 +1,13 @@
 (function () {
   'use strict';
-  function ProfileController($state, $ionicHistory, CameraService, ProfileService) {
+  function ProfileController($scope, $state, $ionicHistory, CameraService, ProfileService) {
     var vm = this;
 
     vm.init = function () {
-      ProfileService.get().then(function (profile) {
+      ProfileService.get().then(function (profiles) {
         vm.profile = {};
-        if (profile) {
-          vm.profile = profile;
+        if (profiles.length) {
+          vm.profile = profiles[0];
         }
       });
     };
@@ -32,11 +32,12 @@
       });
     };
 
-    vm.init();
+    $scope.$on('$ionicView.enter', vm.init);
   }
 
   angular.module('mgstore')
     .controller('ProfileController', [
+      '$scope',
       '$state',
       '$ionicHistory',
       'CameraService',

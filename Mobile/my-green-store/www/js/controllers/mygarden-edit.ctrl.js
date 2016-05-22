@@ -15,7 +15,7 @@
       CameraService.getPicture().then(function (imageData) {
         vm.garden.photo = imageData;
       });
-    }
+    };
 
     vm.save = function () {
       GardenService.save(vm.garden).then(function () {
