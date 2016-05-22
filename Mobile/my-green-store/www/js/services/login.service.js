@@ -19,7 +19,7 @@
         return Restangular.oneUrl('login', baseUrl + '/login').get().then(function (data) {
           LocalStorageService.set('user', data.user);
           LocalStorageService.set('token', data.user.token);
-          return user;
+          return data.user;
         });
       });
     };
