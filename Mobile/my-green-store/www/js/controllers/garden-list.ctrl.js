@@ -7,7 +7,7 @@
     vm.determineDistances = function () {
       LocationService.getCurrentLocation().then(function (pos) {
         vm.gardens.forEach(function (garden) {
-          garden.distance = LocationService.distanceTo(pos, garden.location);
+          garden.distance = LocationService.distanceTo(pos, { lat: garden.location[0], lng: garden.location[1] });
         });
       });
     };
