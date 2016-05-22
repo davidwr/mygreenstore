@@ -6,7 +6,7 @@
     var statusMap = {
       pending: 'Pending',
       canceled: 'Cancelled',
-      finished: 'Completed'
+      closed: 'Completed'
     };
 
     var service = {};
@@ -22,13 +22,11 @@
     };
 
     service.save = function (order) {
-      return $q(function (resolve) {
-        resolve(order);
-      });
+      return Restangular.one('order', order.id).one('status').customPUT({ status: order.status });
     }
 
     service.finish = function (order) {
-      order.status = 'finished';
+      order.status = 'closed';
       return service.save(order);
     };
 

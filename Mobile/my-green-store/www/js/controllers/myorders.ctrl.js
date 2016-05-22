@@ -8,7 +8,7 @@
         switch(item.status) {
           case 'pending': item.statusClass = 'button-dark'; break;
           case 'canceled': item.statusClass = 'button-assertive'; break;
-          case 'finished': item.statusClass = 'button-balanced'; break;
+          case 'closed': item.statusClass = 'button-balanced'; break;
         }
       })
     };
@@ -19,7 +19,7 @@
           var user = LocalStorageService.get('user');
           OrderService.mapLabels(orders);
 
-          vm.soldItems = _.filter(orders, function(order) { return order.seller == user.id; });
+          vm.soldItems = _.filter(orders, function(order) { return order.seller.id == user.id; });
           vm.populateClass(vm.soldItems);
 
           vm.boughtItems = _.filter(orders, function(order) { return order.customer == user.id; });

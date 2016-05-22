@@ -4,15 +4,33 @@
     var vm = this;
 
     vm.init = function () {
-      var user = LocalStorageService.get('user');
-
       vm.order = $stateParams['order'];
-      vm.isSeller = vm.order.seller == user.id;
+
+      if(!vm.order) {
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+
+        return $state.go('app.myorders');
+      }
 
       vm.total = 0;
       vm.order.items.forEach(function (item) {
         vm.total += item.price * item.quantity;
       });
+    };
+
+    vm.isDelivery = function () {
+       return vm.order.ship_type == 'delivery';
+    };
+
+    vm.isNotDelivery = function () {
+      return !vm.isDelivery();
+    };
+
+    vm.isSeller = function () {
+      var user = LocalStorageService.get('user');
+      return vm.order.seller.id == user.id;
     };
 
     vm.complete = function () {
