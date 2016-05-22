@@ -18,11 +18,15 @@
     };
 
     service.save = function (garden) {
-      if (garden.put) {
-        return garden.put();
+      if (garden.id) {
+        return Restangular.one('garden', garden.id).customPUT(garden);
       } else {
         return Restangular.all('garden').post(garden);
       }
+    };
+    
+    service.getMyGarden = function() {
+      return Restangular.all('mygarden').getList();
     };
 
     return service;
