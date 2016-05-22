@@ -13,12 +13,34 @@
     vm.init = function () {
       vm.garden = $stateParams['garden'];
       vm.products = CheckoutService.getProducts();
+
+      if(!vm.products)
+        vm.goBack();
     };
 
     vm.confirm = function () {
       $scope.shipToMe = vm.ship;
-      CheckoutService.confirm().then(function (order) {
-        $scope.order = order;
+
+      var order = {
+        ship_type: vm.ship ? 'delivery' : 'pickup',
+        seller: vm.garden.owner,
+        items: []
+      };
+
+      if(vm.ship)
+        order.ship_address = vm.ship_address;
+
+      vm.products.forEach(function(product){
+        order.items.push({
+          price: product.price,
+          quantity: product.qty,
+          product_id: product.id
+        });
+      });
+
+      CheckoutService.confirm(order).then(function (orderCreated) {
+        orderCreated.garden = vm.garden;
+        $scope.lastOrder = orderCreated;
         $scope.modal.show();
       });
     };
@@ -30,6 +52,7 @@
       $state.go('app.gardenlist');
       $scope.modal.hide();
     }
+
     vm.init();
   }
 
