@@ -6,7 +6,7 @@
   <ion-content>
     <form ng-submit="vm.add()">
       <div style="text-align:center">
-        <img src="{{product.photo}}" class="full-product-image" ng-show="product.photo" alt="photo" />
+        <img ng-src="{{product.photo}}" class="full-product-image" ng-show="product.photo" alt="photo" />
         <h2>{{product.name}}</h2>
         <p>We have: {{product.stock}}</p>
       </div>

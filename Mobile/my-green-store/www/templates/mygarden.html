@@ -18,9 +18,10 @@
         </button> My Products
       </ion-item>
       <ion-item ng-repeat="product in vm.products" class="item-avatar item-button-right" ng-click="vm.editProduct(product)">
-        <img src="{{product.photo}}" alt="photo"></img>
-        <h2>{{product.name}}</h2>
+        <img ng-src="{{product.photo}}" alt="photo"></img>
+        <h2>{{product.description}}</h2>
         <p>In stock: {{product.stock}}</p>
+        <p>{{product.price | currency}}</p>
         <button style="height:100%;top:25%" class="button button-assertive button-clear" ng-click="vm.remove(product, $event)"><i class="icon ion-minus-circled "></i></button>
       </ion-item>
     </ion-list>
@@ -28,7 +29,7 @@
 
   <ion-content ng-show="vm.loading">
     <div style="text-align:center" >
-      <ion-spinner></ion-spinner><br />Searching you garden
+      <ion-spinner></ion-spinner><br />Updating you garden
     </div>
   </ion-content>
 </ion-view>

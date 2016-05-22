@@ -1,47 +1,30 @@
 (function () {
   'use strict';
 
-  function ProductService(Restangular, $q) {
+  function ProductService(Restangular) {
 
     var service = {};
-    var fakeList = [
-      {
-        id: 0,
-        name: 'Carrots',
-        stock: 150,
-        photo: ''
-      }, {
-        id: 1,
-        name: 'Apples',
-        stock: 50
-      }
-    ];
 
     service.getProducts = function (gardenId) {
       return Restangular.one('garden', gardenId).getList('product');
     };
 
-    service.save = function(product) {
-      return $q(function(resolve) {
-        if (!product.id) {
-          product.id = new Date().getTime();
-          fakeList.push(product);
-        }
-
-        resolve(product);
-      });
+    service.save = function (product) {
+      if (product.id) {
+        return Restangular.one('product', product.id).customPUT(product);
+      } else {
+        return Restangular.all('product').post(product);
+      }
     };
 
-    service.remove = function(product) {
-      return $q(function(resolve) {
-        resolve();
-      });
+    service.remove = function (product) {
+      return Restangular.one('product', product.id).remove();
     };
 
     return service;
   }
 
   angular.module('mgstore')
-    .factory('ProductService', ProductService);
+    .factory('ProductService', ['Restangular', ProductService]);
 
 } ());

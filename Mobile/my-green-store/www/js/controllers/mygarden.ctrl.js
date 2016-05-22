@@ -1,7 +1,8 @@
 (function () {
   'use strict';
-  function MyGardenController($state, $ionicHistory, GardenService, ProductService) {
+  function MyGardenController($scope, $state, $ionicHistory, GardenService, ProductService) {
     var vm = this;
+    vm.loading = true;
 
     vm.init = function () {
       vm.garden = {};
@@ -43,9 +44,9 @@
       }
     };
 
-    vm.init();
+    $scope.$on('$ionicView.enter', vm.init);
   }
 
   angular.module('mgstore')
-    .controller('MyGardenController', ['$state', '$ionicHistory', 'GardenService', 'ProductService', MyGardenController]);
+    .controller('MyGardenController', ['$scope', '$state', '$ionicHistory', 'GardenService', 'ProductService', MyGardenController]);
 } ());
