@@ -5,7 +5,7 @@
         Your basket
       </ion-item>
       <ion-item ng-repeat="product in vm.products" class="item-avatar" ng-click="vm.showDetails(product)">
-        <img src="img/ionic.png" alt="photo"></img>
+        <img src="{{product.photo ? product.photo : 'http://dummyimage.com/40x40/ffffff/000000.jpg&text=no+photo'}}" alt="photo"></img>
         <div class="product-quantity" ng-if="product.qty">
           <p>Qty.: {{product.qty}}</p>
         </div>
@@ -26,11 +26,11 @@
         </label>
       </ion-item>
       <ion-item ng-hide="vm.ship">
-        <p>Pickup location:<br /> {{vm.garden.address}}</p>
+        <p>Pickup location:<br /> {{vm.garden.name}}<br />{{vm.garden.address}}</p>
       </ion-item>
       <ion-item ng-show="vm.ship">
         <label class="item item-input">
-          <textarea placeholder="Put your address here!"></textarea>
+          <textarea placeholder="Put your address here!" ng-model="vm.ship_address"></textarea>
         </label>
       </ion-item>
     </ion-list>
