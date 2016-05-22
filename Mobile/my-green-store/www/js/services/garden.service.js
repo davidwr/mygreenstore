@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function GardenService(Restangular, $q) {
+  function GardenService(Restangular) {
 
     var service = {};
     var fakeList = [
@@ -21,34 +21,29 @@
     ];
 
     service.getCloseToMe = function (pos) {
-      return $q(function (resolve) {
-        Restangular.all('garden').customGET('', {
-          latitude: pos.lat,
-          longitude: pos.lng,
-          max_distance: 1000000
-        }).then(function(gardens) {
-          resolve(gardens)
-        });
+      return Restangular.all('garden').getList({
+        latitude: pos.lat,
+        longitude: pos.lng,
+        max_distance: 100000000
       });
     };
 
     service.getGarden = function (id) {
-      return $q(function (resolve) {
-        resolve(fakeList[id]);
-      });
+      return Restangular.one('garden', id).get();
     };
 
     service.save = function (garden) {
-      return $q(function (resolve) {
-        fakeList[0] = garden;
-        resolve();
-      });
+      if (garden.put) {
+        return garden.put();
+      } else {
+        return Restangular.all('garden').post(garden);
+      }
     };
 
     return service;
   }
 
   angular.module('mgstore')
-    .factory('GardenService', GardenService);
+    .factory('GardenService', ['Restangular', GardenService]);
 
 } ());

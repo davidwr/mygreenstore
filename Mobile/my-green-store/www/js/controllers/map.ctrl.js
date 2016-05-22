@@ -9,7 +9,7 @@
       vm.showAddressBar = $stateParams['showAddressBar'];
 
       vm.garden = $stateParams['garden'];
-      var pos = vm.garden.location;
+      var pos = { lat: vm.garden.location[0], lng: vm.garden.location[1] };
       var center = new google.maps.LatLng(pos.lat, pos.lng);
 
       var mapOptions = {
