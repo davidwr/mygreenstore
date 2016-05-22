@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function GardenService($q) {
+  function GardenService(Restangular, $q) {
 
     var service = {};
     var fakeList = [
@@ -20,9 +20,15 @@
       }
     ];
 
-    service.getCloseToMe = function () {
+    service.getCloseToMe = function (pos) {
       return $q(function (resolve) {
-        resolve(fakeList)
+        Restangular.all('garden').customGET('', {
+          latitude: pos.lat,
+          longitude: pos.lng,
+          max_distance: 1000000
+        }).then(function(gardens) {
+          resolve(gardens)
+        });
       });
     };
 

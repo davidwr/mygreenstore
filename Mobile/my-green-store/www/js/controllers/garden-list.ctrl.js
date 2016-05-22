@@ -13,10 +13,12 @@
     };
 
     vm.init = function () {
-      GardenService.getCloseToMe().then(function (gardens) {
-        vm.gardens = gardens;
-        vm.determineDistances();
-        $scope.$on('$ionicView.enter', vm.determineDistances);
+      LocationService.getCurrentLocation().then(function (pos) {
+        GardenService.getCloseToMe(pos).then(function (gardens) {
+          vm.gardens = gardens;
+          vm.determineDistances();
+          $scope.$on('$ionicView.enter', vm.determineDistances);
+        });
       });
     };
 
