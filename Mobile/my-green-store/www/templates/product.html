@@ -2,9 +2,9 @@
   <ion-content>
     <ion-list>
       <ion-item style="text-align:center">
-        <img src="{{vm.product.photo}}" alt="photo" ng-if="vm.product.photo" style="max-width: 100%;max-height: 240px;" />
+        <img ng-src="{{vm.product.photo}}" alt="photo" ng-if="vm.product.photo" style="max-width: 100%;max-height: 240px;" />
         <button class="no-margin button button-dark button-full button-small" ng-click="vm.takePicture()">
-          <i class="icon ion-camera"></i> {{vm.product.picture? 'Change': 'Take a'}} picture
+          <i class="icon ion-camera"></i> {{vm.product.photo? 'Change': 'Take '}} picture
         </button>
       </ion-item>
       <label class="item item-input item-stacked-label">
