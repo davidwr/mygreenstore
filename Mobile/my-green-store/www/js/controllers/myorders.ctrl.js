@@ -33,6 +33,8 @@
     }
 
     vm.init();
+    
+    $scope.$on('$ionicView.enter', vm.init);
   }
 
   angular.module('mgstore')
