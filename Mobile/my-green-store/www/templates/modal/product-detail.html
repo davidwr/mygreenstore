@@ -1,12 +1,13 @@
 <ion-modal-view>
-  <ion-header-bar>
+  <ion-header-bar class="bar-balanced">
     <h1 class="title">Detail</h1>
+    <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
   </ion-header-bar>
   <ion-content>
     <form ng-submit="vm.add()">
       <img src="img/ionic.png" alt="photo" />
       <h2>{{product.name}}</h2>
-      <p>Stock: {{product.stock}}</p>
+      <p>We have: {{product.stock}}</p>
       <label class="item item-input item-stacked-label">
         <span class="input-label">How many do you need?</span>
         <input id="mdlProdQty" type="number" placeholder="Qty." ng-model="product.qty">
@@ -14,6 +15,6 @@
     </form>
   </ion-content>
   <div class="bar bar-footer">
-    <button class="button button-clear pull-right button-dark" ng-click="vm.add()">Add</button>
+    <button class="button button-full no-margin button-balanced" ng-click="vm.add()">Add</button>
   </div>
 </ion-modal-view>

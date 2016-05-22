@@ -1,0 +1,21 @@
+<ion-view view-title="Map">
+  <ion-content has-bouncing="false">
+    <form ng-submit="vm.search()">
+      <ion-list>
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Seach address" ng-model="vm.garden.address" />
+        </label>
+          <button class="button button-small button-clear button-dark">Search</button>
+        </div>
+      </ion-list>
+    </form>
+  </ion-content>
+  <ion-content style="margin-top:51px">
+    <div id="map" data-tap-disabled="true"></div>
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-full no-margin button-balanced" ng-click="vm.save()">Save</button>
+  </div>
+</ion-view>

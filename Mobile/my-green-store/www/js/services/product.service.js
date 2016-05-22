@@ -21,6 +21,23 @@
         resolve(fakeList)
       });
     };
+    
+    service.save = function(product) {
+      return $q(function(resolve) {
+        if (!product.id) {
+          product.id = new Date().getTime();
+          fakeList.push(product);
+        }
+
+        resolve(product);
+      });
+    };
+    
+    service.remove = function(product) {
+      return $q(function(resolve) {
+        resolve();
+      });
+    };
 
     return service;
   }
