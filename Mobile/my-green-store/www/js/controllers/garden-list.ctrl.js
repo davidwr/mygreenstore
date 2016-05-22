@@ -13,9 +13,12 @@
     };
 
     vm.init = function () {
+      console.log('Iniciando...');
       vm.locating = true;
       LocationService.getCurrentLocation().then(function (pos) {
+        console.log('Localizado!', pos);
         GardenService.getCloseToMe(pos).then(function (gardens) {
+          console.log('Got!', gardens);
           vm.locating = false;
           vm.gardens = gardens;
           vm.determineDistances();
