@@ -19,11 +19,11 @@
         Shipment
       </ion-item>
 
-      <ion-item ng-hide="vm.order.isDelivery()">
+      <ion-item ng-hide="vm.isDelivery()">
         <p>Pickup location:<br /> {{vm.order.garden.name}}<br />{{vm.order.garden.address}}</p>
       </ion-item>
 
-      <ion-item ng-show="vm.order.isDelivery()">
+      <ion-item ng-show="vm.isDelivery()">
         <p>Delivery location:<br /> {{vm.order.ship_address}}</p>
       </ion-item>
     </ion-list>
