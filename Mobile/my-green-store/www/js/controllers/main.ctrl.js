@@ -39,6 +39,14 @@
       $scope.login(function () {
         $state.go('app.profile');
       });
+    };
+
+    main.logout = function () {
+      LoginService.logout();
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      $state.go('app.gardenlist');
     }
   }
 

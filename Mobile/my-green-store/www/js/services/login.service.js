@@ -27,7 +27,7 @@
     service.getUser = function () {
       service.setHeaders();
       return LocalStorageService.get('user');
-    }
+    };
 
     service.setHeaders = function() {
       var token = LocalStorageService.get('token');
@@ -36,6 +36,11 @@
           token: token
         });
       }
+    };
+    
+    service.logout = function() {
+      LocalStorageService.remove('user');
+      LocalStorageService.remove('token');
     }
 
     return service;

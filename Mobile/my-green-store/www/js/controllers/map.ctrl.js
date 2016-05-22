@@ -9,7 +9,10 @@
       vm.showAddressBar = $stateParams['showAddressBar'];
 
       vm.garden = $stateParams['garden'];
-      var pos = { lat: vm.garden.location[0], lng: vm.garden.location[1] };
+      var pos = { lat: 49.2561054, lng: -123.1941245 };
+      if (vm.garden.location) {
+        pos = { lat: vm.garden.location[0], lng: vm.garden.location[1] };
+      }
       var center = new google.maps.LatLng(pos.lat, pos.lng);
 
       var mapOptions = {
@@ -64,11 +67,14 @@
 
     vm.save = function () {
       var center = vm.map.getCenter();
-      vm.garden.location = {
-        lat: center.lat(),
-        lng: center.lng()
+      vm.garden.location = [center.lat(), center.lng()];
+      if (!vm.garden.name) {
+        vm.garden.name = (vm.garden.address? vm.garden.address : 'My ') + ' Store';
       }
-      GardenService.save(vm.garden).then(function () {
+      GardenService.save(vm.garden).then(function (savedGarden) {
+        if (!vm.garden.id) {
+          vm.garden.id = savedGarden.id;
+        }
         $ionicHistory.goBack();
       });
     }
