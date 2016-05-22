@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  function OrderDetailController($state, $stateParams, $ionicHistory, OrderService, LocalStorageService) {
+  function OrderDetailController($scope, $state, $stateParams, $ionicHistory, OrderService, LocalStorageService) {
     var vm = this;
 
     vm.init = function () {
@@ -24,10 +24,6 @@
        return vm.order.ship_type == 'delivery';
     };
 
-    vm.isNotDelivery = function () {
-      return !vm.isDelivery();
-    };
-
     vm.isSeller = function () {
       var user = LocalStorageService.get('user');
       return vm.order.seller.id == user.id;
@@ -46,10 +42,13 @@
     };
 
     vm.init();
+
+    $scope.$on('$ionicView.enter', vm.init);
   }
 
   angular.module('mgstore')
     .controller('OrderDetailController', [
+      '$scope',
       '$state',
       '$stateParams',
       '$ionicHistory',
