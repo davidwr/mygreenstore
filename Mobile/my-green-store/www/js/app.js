@@ -13,7 +13,9 @@
     });
   }
 
-  function config($stateProvider, $urlRouterProvider, RestangularProvider) {
+  function config($compileProvider, $stateProvider, $urlRouterProvider, RestangularProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(http|https|ftp|mailto|file|tel|data)/);
+
     RestangularProvider.setBaseUrl(apiUrl);
 
     $stateProvider
@@ -150,7 +152,7 @@
   }
 
   angular.module('mgstore', ['ionic', 'restangular', 'ngCordovaOauth'])
-    .config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', config])
+    .config(['$compileProvider', '$stateProvider', '$urlRouterProvider', 'RestangularProvider', config])
     .run(['$ionicPlatform', run])
     .constant('baseUrl', baseUrl)
     .constant('apiUrl', apiUrl);
