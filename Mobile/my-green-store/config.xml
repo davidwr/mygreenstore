@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.mygreenstore.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>MyGreenStore</name>
-  <description>
+    <name>MyGreenStore</name>
+    <description>
         A way to sell your produce from your green space
     </description>
-  <author email="you@example.com" href="http://example.com.com/">
+    <author email="you@example.com" href="http://example.com.com/">
       JS Team
     </author>
   <content src="index.html"/>
@@ -76,4 +76,5 @@
   </platform>
   <plugin name="ionic-plugin-keyboard" spec="~2.2.0"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
+
 </widget>
