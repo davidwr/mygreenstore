@@ -5,7 +5,8 @@
     </div>
     <ion-list>
       <ion-item ng-repeat="garden in vm.gardens" class="item-avatar" ng-click="vm.details(garden)">
-        <img ng-src="garden.photo ? garden.photo : ''" alt="photo" /> {{garden.name}}
+        <img ng-src="{{garden.photo ? garden.photo : 'http://dummyimage.com/40x40/ffffff/000000.jpg&text=no+photo'}}" alt="photo"/>
+        {{garden.name}}
         <p ng-show="garden.distance">{{ garden.distance | number:2 }}Km distant</p>
       </ion-item>
     </ion-list>

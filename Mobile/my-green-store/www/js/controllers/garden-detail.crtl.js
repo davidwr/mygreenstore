@@ -24,7 +24,6 @@
       ProductService.getProducts($stateParams['id']).then(function (products) {
         vm.products = products;
       });
-
     };
 
     vm.showDetails = function (product) {
