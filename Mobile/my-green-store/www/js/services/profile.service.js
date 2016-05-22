@@ -5,21 +5,13 @@
 
     var service = {};
 
-    service.getCloseToMe = function (pos) {
-      return Restangular.all('garden').getList({
-        latitude: pos.lat,
-        longitude: pos.lng,
-        max_distance: 100000000
-      });
-    };
-
     service.get = function (id) {
-      return Restangular.one('profile').get();
+      return Restangular.one('profile').getList();
     };
 
     service.save = function (profile) {
       if (profile.put) {
-        return profile.put();
+        return Restangular.one('profile', profile.id).customPUT(profile);
       } else {
         return Restangular.all('profile').post(profile);
       }

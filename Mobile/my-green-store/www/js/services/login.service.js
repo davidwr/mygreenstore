@@ -16,7 +16,7 @@
           token: result.access_token
         });
 
-        return Restangular.oneUrl('login', baseUrl).get().then(function (user) {
+        return Restangular.oneUrl('login', baseUrl + '/login').get().then(function (user) {
           LocalStorageService.set('user', user);
           LocalStorageService.set('token', result.access_token);
           return user;
@@ -25,6 +25,7 @@
     };
 
     service.getUser = function () {
+      service.setHeaders();
       return LocalStorageService.get('user');
     }
 
