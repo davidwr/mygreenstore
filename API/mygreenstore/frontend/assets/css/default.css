@@ -1,0 +1,97 @@
+#landing * {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+#logo {
+  margin-top: 2%;
+}
+
+#content {
+  margin-top: 5%;
+}
+
+#content h1 {
+  color: #111;
+  margin-bottom: 30px;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-top: 20px;
+}
+
+#content h1 strong {
+  font-weight: 400;
+}
+
+#content p {
+  margin: 2px 0;
+  text-align: left;
+  line-height: 26px;
+  font-weight: 400;
+  font-style: normal;
+  color: #111;
+  font-size: 15px;
+}
+
+#content #newsletter {
+  margin-top: 40px;
+}
+
+#content #newsletter .email,
+#content #newsletter .ui.button.green {
+  font-weight: 300;
+}
+
+#content #image-content {
+  text-align: center;
+}
+  #content #image-content img {
+    vertical-align: top;
+    width: 80%;
+  }
+
+#social {
+    position: fixed;
+    bottom: 2%;
+}
+#social ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+#social li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 5px;
+}
+#social a {
+    font-size: 28px;
+    color: #111;
+    text-decoration: none;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+#social a i {
+    font-style: normal;
+    font-weight: normal;
+    opacity: 1;
+    display: block;
+    font-variant: normal;
+    font-size: 16px;
+    border: 1px solid #111;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+#social a:hover i {
+    border: 1px solid #43A047 ;
+    color: #43A047 ;
+}
