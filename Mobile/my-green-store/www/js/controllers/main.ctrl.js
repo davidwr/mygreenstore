@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function MainController($scope, $state, $ionicModal, LoginService) {
+  function MainController($scope, $state, $ionicModal, $ionicHistory, LoginService) {
     var main = this;
 
     main.loginMessage = '';
@@ -55,6 +55,7 @@
       '$scope',
       '$state',
       '$ionicModal',
+      '$ionicHistory',
       'LoginService',
       MainController]);
 
