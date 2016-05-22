@@ -1,0 +1,16 @@
+How to build the app:
+You will need nodejs, cordova and ionic (Xcode for iOS build and Android SDK for android)
+
+With nodejs installed on your path, type:
+$ npm install -g cordova ionic
+
+Go to the project root and run:
+$ ionic build ios
+$ ionic run ios
+
+You will need Xcode installed on your mac.
+If the "run" command does not work, you can open the Xcode project generated on the platforms/ios folder.
+Once the project is open on Xcode, simply choose the target and run.
+
+You can also build the project for android. Just change "ios" to "android" and set the ANDROID_HOME ambient variable
+
