@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  function ProductController($state, $stateParams, $ionicHistory, ProductService) {
+  function ProductController($state, $stateParams, $ionicHistory, ProductService, CameraService) {
     var vm = this;
 
     vm.init = function () {
@@ -10,15 +10,27 @@
       }
     };
 
+    vm.takePicture = function () {
+      CameraService.getPicture().then(function (imageData) {
+        vm.product.photo = imageData;
+      });
+    }
+
     vm.save = function () {
       ProductService.save(vm.product).then(function () {
         $ionicHistory.goBack();
       });
-    }
+    };
 
     vm.init();
   }
 
   angular.module('mgstore')
-    .controller('ProductController', ['$state', '$stateParams', '$ionicHistory', 'ProductService', ProductController]);
+    .controller('ProductController', [
+      '$state',
+      '$stateParams',
+      '$ionicHistory',
+      'ProductService',
+      'CameraService',
+      ProductController]);
 } ());

@@ -1,24 +1,20 @@
-<ion-view view-title="My Garden">
+<ion-view view-title="My profile">
   <ion-content>
     <ion-list>
       <ion-item style="text-align:center">
-        <img src="{{vm.garden.photo}}" alt="photo" ng-if="vm.garden.photo" style="max-width: 100%;max-height: 240px;" />
+        <img src="{{vm.profile.photo}}" alt="photo" ng-if="vm.profile.photo" style="max-width: 100%;max-height: 240px;" />
         <button class="no-margin button button-dark button-full button-small" ng-click="vm.takePicture()">
-          <i class="icon ion-camera"></i> {{vm.garden.picture? 'Change': 'Take a'}} picture
+          <i class="icon ion-camera"></i> {{vm.profile.photo? 'Change': 'Take'}} picture
         </button>
       </ion-item>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Name</span>
-        <input type="text" placeholder="Name" ng-model="vm.garden.name">
+        <input type="text" placeholder="Name" ng-model="vm.profile.name">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Phone #</span>
-        <input type="text" placeholder="Phone #" ng-model="vm.garden.phone">
+        <input type="tel" placeholder="Phone #" ng-model="vm.profile.phone">
       </label>
-      <ion-item>
-        <h2>{{vm.garden.address}}</h2>
-        <p><a ng-click="vm.changeAddress()">Change Address</a></p>
-      </ion-item>
     </ion-list>
   </ion-content>
   <div class="bar bar-footer">

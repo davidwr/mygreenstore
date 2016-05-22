@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  function MyGardenEditController($state, $stateParams, $ionicHistory, GardenService) {
+  function MyGardenEditController($state, $stateParams, $ionicHistory, GardenService, CameraService) {
     var vm = this;
 
     vm.init = function () {
@@ -11,6 +11,12 @@
       $state.go('app.mapaddress', { garden: vm.garden });
     };
 
+    vm.takePicture = function () {
+      CameraService.getPicture().then(function (imageData) {
+        vm.garden.photo = imageData;
+      });
+    }
+
     vm.save = function () {
       GardenService.save(vm.garden).then(function () {
         $ionicHistory.goBack();
@@ -20,5 +26,11 @@
   }
 
   angular.module('mgstore')
-    .controller('MyGardenEditController', ['$state', '$stateParams', '$ionicHistory', 'GardenService', MyGardenEditController]);
+    .controller('MyGardenEditController', [
+      '$state',
+      '$stateParams',
+      '$ionicHistory',
+      'GardenService',
+      'CameraService',
+      MyGardenEditController]);
 } ());
