@@ -1,7 +1,7 @@
 <ion-view view-title="{{vm.garden.name}}">
   <ion-content has-bouncing="false">
     <ion-item class="item-thumbnail-left">
-      <img src="{{vm.garden.photo}}" ng-show="vm.garden.photo" alt="photo"></img>
+      <img ng-src="{{vm.garden.photo ? vm.garden.photo : 'http://dummyimage.com/80x80/ffffff/000000.jpg&text=no+photo'}}" alt="garden photo"></img>
       <h2>{{vm.garden.name}}</h2>
       <p><a ui-sref="app.map({garden: vm.garden})">{{vm.garden.address}}</a></p>
       <p>{{vm.garden.phone}}</p>
@@ -13,7 +13,7 @@
         Our products
       </ion-item>
       <ion-item ng-repeat="product in vm.products" class="item-avatar" ng-click="vm.showDetails(product)">
-        <img src="{{product.photo}}" ng-show="product.photo" alt="photo"></img>
+        <img ng-src="{{vm.garden.photo ? vm.garden.photo : 'http://dummyimage.com/40x40/ffffff/000000.jpg&text=no+photo'}}" alt="product photo"></img>
         <div class="product-quantity" ng-if="product.qty">
           <p>Qty.: {{product.qty}}</p>
         </div>
