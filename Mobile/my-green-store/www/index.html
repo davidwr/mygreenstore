@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>My Green Store</title>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>My Green Store</title>
 
 
-    <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+  <!-- compiled css output -->
+  <link href="css/ionic.app.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/lodash/dist/lodash.min.js"></script>
-    <script src="lib/restangular/dist/restangular.min.js"></script>
-    <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/lodash/dist/lodash.min.js"></script>
+  <script src="lib/restangular/dist/restangular.min.js"></script>
+  <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/services/localstorage.service.js"></script>
-    <script src="js/services/garden.service.js"></script>
-    <script src="js/services/product.service.js"></script>
-    <script src="js/services/checkout.service.js"></script>
-    <script src="js/services/order.service.js"></script>
-    <script src="js/services/camera.service.js"></script>
-    <script src="js/services/location.service.js"></script>        
-    <script src="js/controllers/main.ctrl.js"></script>
-    <script src="js/controllers/garden-list.ctrl.js"></script>
-    <script src="js/controllers/garden-detail.crtl.js"></script>   
-    <script src="js/controllers/checkout.ctrl.js"></script>
-    <script src="js/controllers/garden-detail.crtl.js"></script>
-    <script src="js/controllers/garden-list.ctrl.js"></script>
-    <script src="js/controllers/main.ctrl.js"></script>
-    <script src="js/controllers/map.ctrl.js"></script>
-    <script src="js/controllers/mygarden-edit.ctrl.js"></script>
-    <script src="js/controllers/mygarden.ctrl.js"></script>
-    <script src="js/controllers/myorders.ctrl.js"></script>
-    <script src="js/controllers/product.ctrl.js"></script>
-    <script src="js/controllers/order-detail.ctrl.js"></script>
-    <script src="js/controllers/profile.ctrl.js"></script>
-  </head>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/services/localstorage.service.js"></script>
+  <script src="js/services/garden.service.js"></script>
+  <script src="js/services/product.service.js"></script>
+  <script src="js/services/checkout.service.js"></script>
+  <script src="js/services/order.service.js"></script>
+  <script src="js/services/camera.service.js"></script>
+  <script src="js/services/location.service.js"></script>
+  <script src="js/services/login.service.js"></script>
+  <script src="js/services/profile.service.js"></script>
+  <script src="js/controllers/main.ctrl.js"></script>
+  <script src="js/controllers/garden-list.ctrl.js"></script>
+  <script src="js/controllers/garden-detail.crtl.js"></script>
+  <script src="js/controllers/checkout.ctrl.js"></script>
+  <script src="js/controllers/garden-detail.crtl.js"></script>
+  <script src="js/controllers/garden-list.ctrl.js"></script>
+  <script src="js/controllers/main.ctrl.js"></script>
+  <script src="js/controllers/map.ctrl.js"></script>
+  <script src="js/controllers/mygarden-edit.ctrl.js"></script>
+  <script src="js/controllers/mygarden.ctrl.js"></script>
+  <script src="js/controllers/myorders.ctrl.js"></script>
+  <script src="js/controllers/product.ctrl.js"></script>
+  <script src="js/controllers/order-detail.ctrl.js"></script>
+  <script src="js/controllers/profile.ctrl.js"></script>
+</head>
 
-  <body ng-app="mgstore">
-    <ion-nav-view></ion-nav-view>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDTuWbgoQF2mg252j7-HA9E1zfQB2mCICA"></script>
-  </body>
+<body ng-app="mgstore">
+  <ion-nav-view></ion-nav-view>
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDTuWbgoQF2mg252j7-HA9E1zfQB2mCICA"></script>
+</body>
+
 </html>

@@ -1,15 +1,17 @@
 <ion-modal-view>
-  <ion-header-bar>
+  <ion-header-bar class="bar-balanced">
     <h1 class="title">Login</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+      <button class="button button-clear" ng-click="main.closeLogin()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <button type="button" name="button" ng-click="doLogin()">Login with Google</button>
+    <div id="floater"></div>
+    <div class="center-login">
+      <h4>You must log in to continue</h4>
+      <button type="button" class="button button-large button-assertive" ng-click="main.doLogin()"><i class="icon ion-social-google"></i> Login with Google</button>
+      <br /> {{main.loginMessage}}
 
-    {{loginMessage}}
-
-    {{user}}
+    </div>
   </ion-content>
 </ion-modal-view>

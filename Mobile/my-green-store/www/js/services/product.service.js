@@ -1,14 +1,15 @@
 (function () {
   'use strict';
 
-  function ProductService($q) {
+  function ProductService(Restangular, $q) {
 
     var service = {};
     var fakeList = [
       {
         id: 0,
         name: 'Carrots',
-        stock: 150
+        stock: 150,
+        photo: ''
       }, {
         id: 1,
         name: 'Apples',
@@ -17,11 +18,9 @@
     ];
 
     service.getProducts = function (gardenId) {
-      return $q(function (resolve) {
-        resolve(fakeList)
-      });
+      return Restangular.one('garden', gardenId).getList('product');
     };
-    
+
     service.save = function(product) {
       return $q(function(resolve) {
         if (!product.id) {
@@ -32,7 +31,7 @@
         resolve(product);
       });
     };
-    
+
     service.remove = function(product) {
       return $q(function(resolve) {
         resolve();

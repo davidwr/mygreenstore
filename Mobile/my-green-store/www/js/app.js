@@ -4,16 +4,19 @@
   var baseUrl = 'http://mygreenstore-allclothes.rhcloud.com/';
   var apiUrl = baseUrl + 'api/v1/';
 
-  function run($ionicPlatform, $scope) {
+  function run($ionicPlatform, LoginService) {
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
     });
+    LoginService.setHeaders();
   }
 
-  function config($stateProvider, $urlRouterProvider, RestangularProvider) {
+  function config($compileProvider, $stateProvider, $urlRouterProvider, RestangularProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(http|https|ftp|mailto|file|tel|data)/);
+
     RestangularProvider.setBaseUrl(apiUrl);
 
     $stateProvider
@@ -21,7 +24,7 @@
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
-        controller: 'MainController'
+        controller: 'MainController as main'
       })
       .state('app.gardenlist', {
         url: '/gardenlist',
@@ -150,9 +153,9 @@
   }
 
   angular.module('mgstore', ['ionic', 'restangular', 'ngCordovaOauth'])
-    .config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', config])
-    .run(['$ionicPlatform', run])
+    .config(['$compileProvider', '$stateProvider', '$urlRouterProvider', 'RestangularProvider', config])
+    .run(['$ionicPlatform', 'LoginService', run])
     .constant('baseUrl', baseUrl)
     .constant('apiUrl', apiUrl);
 
-}());
+} ());

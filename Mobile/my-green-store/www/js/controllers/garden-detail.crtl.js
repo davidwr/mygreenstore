@@ -24,7 +24,6 @@
       ProductService.getProducts($stateParams['id']).then(function (products) {
         vm.products = products;
       });
-
     };
 
     vm.showDetails = function (product) {
@@ -41,20 +40,22 @@
     }
 
     vm.buy = function () {
-      var selectedProducts = [];
-      
-      vm.products.forEach(function(prod) {
-        if (prod.qty && prod.qty > 0) {
-          selectedProducts.push(prod);
+      $scope.login(function () {
+        var selectedProducts = [];
+
+        vm.products.forEach(function (prod) {
+          if (prod.qty && prod.qty > 0) {
+            selectedProducts.push(prod);
+          }
+        });
+
+        if (selectedProducts.length) {
+          CheckoutService.setProducts(selectedProducts);
+          $state.go('app.checkout', { garden: vm.garden });
+        } else {
+          alert("You haven't selected any product!");
         }
       });
-      
-      if (selectedProducts.length) {
-        CheckoutService.setProducts(selectedProducts);
-        $state.go('app.checkout', { garden: vm.garden });
-      } else {
-        alert("You haven't selected any product!");
-      }
     }
 
     vm.init();
