@@ -38,9 +38,13 @@
       }
 
       googleOAuth(function(result) {
+        console.log(result);
+
         login(result.access_token, function(response) {
           if(!response.data.success)
             return onError('final: ', response);
+
+          console.log(response);
 
           $scope.loginMessage = '';
           LocalStorageService.set('user', response.data.user);
