@@ -18,9 +18,13 @@
     };
 
     vm.save = function () {
-      GardenService.save(vm.garden).then(function () {
-        $ionicHistory.goBack();
-      });
+      if (vm.garden.name && vm.garden.location && vm.garden.address) {
+        GardenService.save(vm.garden).then(function () {
+          $ionicHistory.goBack();
+        });
+      } else {
+        alert('All fields are mandatory');
+      }
     };
     vm.init();
   }

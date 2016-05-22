@@ -1,12 +1,24 @@
 (function () {
   'use strict';
-  function MyGardenController($state, GardenService, ProductService) {
+  function MyGardenController($state, $ionicHistory, GardenService, ProductService) {
     var vm = this;
 
     vm.init = function () {
-      GardenService.getGarden('5741376161600f32ffeb3bcb').then(function (garden) {
-        vm.garden = garden;
-        return ProductService.getProducts(garden.id);
+      vm.garden = {};
+      vm.loading = true;
+      GardenService.getMyGarden().then(function (gardens) {
+        if (gardens.length) {
+          vm.garden = gardens[0];
+          vm.loading = false;
+          return ProductService.getProducts(vm.garden.id);
+        } else {
+          $ionicHistory.nextViewOptions({
+            disableBack: true
+          });
+          $state.go('app.mygarden-edit', { garden: {} });
+          return null;
+        }
+
       }).then(function (products) {
         vm.products = products;
       });
@@ -35,5 +47,5 @@
   }
 
   angular.module('mgstore')
-    .controller('MyGardenController', ['$state', 'GardenService', 'ProductService', MyGardenController]);
+    .controller('MyGardenController', ['$state', '$ionicHistory', 'GardenService', 'ProductService', MyGardenController]);
 } ());

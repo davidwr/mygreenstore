@@ -3,12 +3,16 @@
   function ProfileController($scope, $state, $ionicHistory, CameraService, ProfileService) {
     var vm = this;
 
+    vm.loading = true;
+
     vm.init = function () {
+      vm.loading = true;
       ProfileService.get().then(function (profiles) {
         vm.profile = {};
         if (profiles.length) {
           vm.profile = profiles[0];
         }
+        vm.loading = false;
       });
     };
 
