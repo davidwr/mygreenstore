@@ -4,7 +4,7 @@
     var vm = this;
 
     vm.init = function () {
-      GardenService.getGarden(0).then(function (garden) {
+      GardenService.getGarden('5741376161600f32ffeb3bcb').then(function (garden) {
         vm.garden = garden;
         return ProductService.getProducts(garden.id);
       }).then(function (products) {

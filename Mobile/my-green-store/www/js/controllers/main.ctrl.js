@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function MainController(apiUrl, $scope, $ionicModal, $timeout, $cordovaOauth, $http, LocalStorageService) {
+  function MainController(baseUrl, $scope, $ionicModal, $timeout, $cordovaOauth, $http, LocalStorageService) {
     $scope.user = LocalStorageService.get('user');
     $scope.loginMessage = '';
 
@@ -33,14 +33,18 @@
       }
 
       function login(token, callback) {
-        $http.get(apiUrl + '/login', { headers: { token: token }})
+        $http.get(baseUrl + 'login', { headers: { token: token }})
           .then(callback, function(error) { return onError('login: ', error); });
       }
 
       googleOAuth(function(result) {
+        console.log(result);
+
         login(result.access_token, function(response) {
           if(!response.data.success)
             return onError('final: ', response);
+
+          console.log(response);
 
           $scope.loginMessage = '';
           LocalStorageService.set('user', response.data.user);
@@ -52,7 +56,7 @@
   }
 
   angular.module('mgstore')
-    .controller('MainController', ['apiUrl', '$scope', '$ionicModal', '$timeout',
+    .controller('MainController', ['baseUrl', '$scope', '$ionicModal', '$timeout',
       '$cordovaOauth', '$http', 'LocalStorageService', MainController]);
 
 } ());

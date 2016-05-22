@@ -1,23 +1,21 @@
 (function () {
   'use strict';
 
+  var baseUrl = 'http://mygreenstore-allclothes.rhcloud.com/';
+  var apiUrl = baseUrl + 'api/v1/';
+
   function run($ionicPlatform, $scope) {
     $ionicPlatform.ready(function () {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-
       }
-      // if (window.StatusBar) {
-      //   // org.apache.cordova.statusbar required
-      //   StatusBar.styleDefault();
-      // }
     });
   }
 
-  function config($stateProvider, $urlRouterProvider) {
+  function config($stateProvider, $urlRouterProvider, RestangularProvider) {
+    RestangularProvider.setBaseUrl(apiUrl);
+
     $stateProvider
       .state('app', {
         url: '/app',
@@ -152,8 +150,9 @@
   }
 
   angular.module('mgstore', ['ionic', 'restangular', 'ngCordovaOauth'])
-    .config(['$stateProvider', '$urlRouterProvider', config])
+    .config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', config])
     .run(['$ionicPlatform', run])
-    .constant('apiUrl', 'http://mygreenstore-allclothes.rhcloud.com/');
+    .constant('baseUrl', baseUrl)
+    .constant('apiUrl', apiUrl);
 
 }());
