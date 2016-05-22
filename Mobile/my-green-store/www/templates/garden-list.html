@@ -1,10 +1,11 @@
 <ion-view view-title="Gardens nearby">
   <ion-content>
-    <button type="button" name="button" ng-click="login()">Login</button>
+    <div style="text-align:center" ng-if="vm.locating">
+      <ion-spinner></ion-spinner><br />Determining your location
+    </div>
     <ion-list>
       <ion-item ng-repeat="garden in vm.gardens" class="item-avatar" ng-click="vm.details(garden)">
-        <img ng-src="garden.photo ? garden.photo : ''" alt="photo"/>
-        {{garden.name}}
+        <img ng-src="garden.photo ? garden.photo : ''" alt="photo" /> {{garden.name}}
         <p ng-show="garden.distance">{{ garden.distance | number:2 }}Km distant</p>
       </ion-item>
     </ion-list>

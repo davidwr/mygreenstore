@@ -13,8 +13,10 @@
     };
 
     vm.init = function () {
+      vm.locating = true;
       LocationService.getCurrentLocation().then(function (pos) {
         GardenService.getCloseToMe(pos).then(function (gardens) {
+          vm.locating = false;
           vm.gardens = gardens;
           vm.determineDistances();
           $scope.$on('$ionicView.enter', vm.determineDistances);
